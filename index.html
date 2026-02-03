@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <title>Movie finder</title>
+</head>
+<body>
+
+<div id="izgled">
+
+    <div id="sekcija1">
+        <div id="welcome">
+            <h1>Movie Finder</h1>
+            <p id="paragraf">
+                Welcome to the "Movie finder". If you are looking for something to watch and you are not sure about it,
+                here you can find basic information about your movie!
+                Just type the name of the movie in the search box.
+            </p>
+        </div>
+
+        <div id="vnesuvanje">
+            <input type="text" id="naslov" placeholder="Enter your movie">
+            <button id="kopce" onclick="prikaz()">Show details</button>
+        </div>
+    </div>
+
+
+    <div id="sekcija2">
+        <h1 id="ime"></h1>
+        <p id="opis"></p>
+        <p id="godina"></p>
+        <p id="rating"></p>
+        <div id="slika"></div>
+
+        <footer>
+            <p class="footer-copy">&copy; 2026 Филип Михајлоски. Сите права задржани.</p>
+        </footer>
+    </div>
+
+</div>
+
+<script>
+    function prikaz() {
+
+        var naslov = document.getElementById("naslov").value;
+
+        fetch("https://www.omdbapi.com/?apikey=thewdb&t=" + encodeURIComponent(naslov))
+            .then(response => response.json())
+            .then(function(data){
+
+                if(data.Response === "False"){
+                    document.getElementById("ime").innerHTML = "Film not found";
+                    document.getElementById("opis").innerHTML = "";
+                    document.getElementById("godina").innerHTML = "";
+                    document.getElementById("rating").innerHTML = "";
+                    document.getElementById("slika").innerHTML = "";
+                    return;
+                }
+
+                document.getElementById("ime").innerHTML = data.Title;
+                document.getElementById("opis").innerHTML = data.Plot;
+                document.getElementById("godina").innerHTML = "Year: " + data.Year;
+                document.getElementById("rating").innerHTML = "IMDb rating: " + data.imdbRating;
+
+                document.getElementById("slika").innerHTML =
+                    `<img src="${data.Poster}">`;
+
+
+                document.getElementById("ime").style.opacity = 0;
+                document.getElementById("opis").style.opacity = 0;
+                document.getElementById("godina").style.opacity = 0;
+                document.getElementById("rating").style.opacity = 0;
+
+                anime({
+                    targets: '#ime',
+                    opacity: [0, 1],
+                    translateY: [30, 0],
+                    duration: 800,
+                    easing: 'easeOutExpo'
+                });
+
+                anime({
+                    targets: '#opis, #godina, #rating',
+                    opacity: [0, 1],
+                    translateY: [30, 0],
+                    delay: 400,
+                    duration: 800,
+                    easing: 'easeOutExpo'
+                });
+
+                anime({
+                    targets: '#slika img',
+                    opacity: [0, 1],
+                    scale: [0.8, 1],
+                    delay: 700,
+                    duration: 1000,
+                    easing: 'easeOutExpo'
+                });
+
+                document.getElementById("sekcija2").scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            });
+
+    }
+</script>
+
+
+<style>
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0b0000, #2b0000, #000000);
+        color: #f5f5f5;
+        font-family: 'Cinzel', serif;
+    }
+
+    #sekcija1 {
+        padding: 120px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 80px;
+        text-align: center;
+    }
+
+    #paragraf {
+        max-width: 700px;
+        line-height: 1.6;
+    }
+
+
+    #vnesuvanje {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    #naslov {
+        width: 400px;
+        height: 40px;
+        border: none;
+        border-radius: 30px;
+        padding: 0 20px;
+        font-size: 16px;
+    }
+
+    #naslov::placeholder {
+        text-align: center;
+    }
+
+    #kopce {
+        border: none;
+        border-radius: 30px;
+        width: 160px;
+        height: 45px;
+        background: #8b0000;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    #kopce:hover {
+        background: #b30000;
+        transform: scale(1.05);
+    }
+
+
+    #sekcija2 {
+        padding: 20px 20px;
+        text-align: center;
+    }
+
+    #ime {
+        font-size: 48px;
+        letter-spacing: 3px;
+    }
+
+    #slika img {
+        height: 350px;
+        border-radius: 15px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+        margin-top: 20px;
+    }
+
+    footer {
+        margin-top: 60px;
+        font-size: 14px;
+        opacity: 0.7;
+    }
+    @media (max-width: 768px) {
+
+        #naslov {
+            width: 90%;
+        }
+
+        #paragraf {
+            max-width: 90%;
+            padding: 0 10px;
+        }
+
+        #ime {
+            font-size: 32px;
+        }
+
+        #slika img {
+            height: auto;
+            width: 80%;
+        }
+
+        #kopce {
+            width: 140px;
+        }
+    }
+</style>
+
+</body>
+</html>
